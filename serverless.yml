@@ -1,0 +1,41 @@
+
+
+service: awesomeapi
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+  stage: dev
+  region: us-east-1
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: first-endpoint
+          method: POST
+
+
+
+# resources:
+#  Resources:
+#    uploadBucket:
+#      Type: AWS::S3::Bucket
+#      Properties:
+#        BucketName: ${self:service}-${self:provider.stage}-uploads
+
+#    userTable:
+#      Type: AWS::DynamoDB::Table
+#      Properties:
+#        TableName:  ${self:service}-${self:provider.stage}-users
+#        AttributeDefinitions:
+#          - AttributeName: userId
+#            AttributeType: S
+#        KeySchema:
+#          - AttributeName: userId
+#            KeyType: HASH
+#        ProvisionedThroughput:
+#          ReadCapacityUnits: 1
+#          WriteCapacityUnits: 1    
